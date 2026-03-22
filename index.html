@@ -4,17 +4,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Margarita + Lime + Salt</title>
+  <title>Margarita + Lime</title>
   <meta name="description"
-        content="Cantina: A powerful ecosystem for reusable prompts and agentic workflows — home of Margarita, Lime, and Salt. Build, compose, and manage your AI pipelines with ease.">
+        content="Cantina: A powerful ecosystem for reusable prompts and agentic workflows — home of Margarita and Lime. Build, compose, and manage your AI pipelines with ease.">
 
-  <meta property="og:title" content=" Margarita + Lime + Salt">
+  <meta property="og:title" content="Margarita + Lime">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://banyango.com/margarita/">
   <meta property="og:image" content="icon.png">
   <meta property="og:image:alt" content="Cantina logo">
   <meta property="og:description"
-        content="This is the home of Margarita, Lime, and Salt — lightweight tools for building reusable prompt templates and agentic workflows.">
+        content="This is the home of Margarita and Lime — lightweight tools for building reusable prompt templates and agentic workflows.">
 
   <link rel="icon" href="/img/favicon.ico" sizes="any">
   <link rel="icon" href="/img/icon.svg" type="image/svg+xml">
@@ -39,7 +39,7 @@
   <div class="nav-inner">
     <a href="#" class="nav-logo" aria-label="Cantina home">
       <img src="img/lime.svg" alt="Cantina" class="nav-logo-img">
-      <span class="nav-logo-text">Margarita + Lime + Salt</span>
+      <span class="nav-logo-text">Margarita + Lime</span>
     </a>
 
     <button class="nav-hamburger" id="menu-toggle" aria-label="Toggle navigation" aria-expanded="false"
@@ -52,7 +52,6 @@
     <ul class="nav-links" id="nav-links" role="list">
       <li><a href="#features">Margarita</a></li>
       <li><a href="#lime">Lime</a></li>
-      <li><a href="#salt">Salt</a></li>
       <li><a href="#docs">Docs</a></li>
       <li class="nav-dropdown">
         <button class="nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true">
@@ -84,7 +83,7 @@
   <div class="hero-lime-bg hero-lime-bg-5" aria-hidden="true"><img src="img/lime.svg" alt="" class="hero-lime-img"></div>
   <div class="container">
     <h1 class="hero-heading">
-      Margarita <span class="hero-accent">+</span> Lime <span class="hero-accent">+</span> Salt
+      Margarita <span class="hero-accent">+</span> Lime
     </h1>
     <p class="hero-sub">
       All the tools you need to build reusable, composable prompts and agentic workflows.
@@ -107,6 +106,7 @@
       <div class="hero-actions">
         <a href="components.html" class="btn btn-lime">Guide: Compose Once, Reuse Everywhere &rarr;</a>
         <a href="agents-md.html" class="btn btn-lime">Guide: One AGENTS.md, for Any Model &rarr;</a>
+        <a href="template-packages.html" class="btn btn-lime">Guide: Share Templates Across Projects &rarr;</a>
       </div>
       <div class="hero-explore">
         <a href="https://www.banyango.com/margarita/latest/" class="btn btn-ghost" target="_blank"
@@ -176,6 +176,14 @@
           <span class="ftab-text">
               <span class="ftab-name">Python API</span>
               <span class="ftab-desc">Programmatic access</span>
+            </span>
+        </button>
+
+        <button class="feature-tab" role="tab" aria-selected="false" aria-controls="panel-uv" data-panel="uv">
+          <span class="ftab-icon">&#9889;</span>
+          <span class="ftab-text">
+              <span class="ftab-name">uv</span>
+              <span class="ftab-desc">Fast Python packaging</span>
             </span>
         </button>
 
@@ -309,6 +317,28 @@ prompt = renderer.render(nodes)</code>
           </pre>
         </div>
 
+        <div class="feature-panel" id="panel-uv" role="tabpanel">
+          <div class="fpanel-header">
+            <h3>Using Margarita with uv</h3>
+            <p>Install and run Margarita with <a href="https://docs.astral.sh/uv/" target="_blank" rel="noopener noreferrer">uv</a> — no virtual environment setup required. Use <code>uvx</code> to run it as a one-off tool, or add it as a project dependency. Packages that ship <code>.mg</code> files can be installed via uv and included directly in your templates.</p>
+          </div>
+          <pre class="fpanel-code"><code><span class="code-comment"># run margarita directly without installing</span>
+uvx margarita render greet.mg
+
+<span class="code-comment"># add margarita to your project</span>
+uv add margarita
+
+<span class="code-comment"># run via uv in a project that has margarita as a dependency</span>
+uv run margarita render greet.mg
+
+<span class="code-comment"># install globally as a uv tool</span>
+uv tool install margarita
+
+<span class="code-comment"># include a template shipped inside a uv-managed package</span>
+<span class="code-comment"># report.mg</span>
+<span class="code-var">[[ my-prompt-package/summarize.mg topic="AI agents" ]]</span></code></pre>
+        </div>
+
       </div><!-- /.feature-panels -->
 
     </div><!-- /.feature-explorer -->
@@ -322,7 +352,7 @@ prompt = renderer.render(nodes)</code>
       <div class="lime-badge">Ecosystem</div>
       <h2 class="section-heading">Meet <span class="lime-accent">Lime</span></h2>
       <p class="section-sub">
-        Lime is an extension that <span class="lime-accent">wraps</span> your existing AI tools like <span class="lime-accent">Copilot</span> / <span class="lime-accent">Claude Code</span>.
+        Lime is an extension that <span class="lime-accent">wraps</span> your existing AI tools like <span class="lime-accent">Github Copilot</span> / <span class="lime-accent">More soon</span>.
         Create <code class="code-comment">.mgx</code> files and get surgical control over the context, tools, and state sent to them.
       </p>
       <div class="hero-actions">
@@ -601,70 +631,6 @@ Otherwise write out it's set!
       </div><!-- /.feature-panels -->
 
     </div><!-- /.feature-explorer -->
-  </div>
-</section>
-
-<!-- Salt -->
-<section class="salt-section" id="salt">
-  <div class="container">
-    <div class="salt-intro">
-      <div class="salt-badge">Coming Soon</div>
-      <h2 class="section-heading">Meet <span class="salt-accent">Salt</span></h2>
-      <p class="section-sub">
-        Salt is a package manager for prompts. Install reusable prompt packages from a shared registry, lock every
-        file to a verified hash, and protect your pipelines against prompt injection before they can do any damage.
-      </p>
-    </div>
-
-    <div class="salt-highlights">
-
-      <div class="salt-highlight">
-        <div class="salt-highlight-icon">&#128230;</div>
-        <div class="salt-highlight-body">
-          <h3>Package Registry</h3>
-          <p>Install prompt packages from the Salt registry with a single command — just like npm for your LLM
-            pipelines. Share and version your own packages for the whole team.</p>
-        </div>
-      </div>
-
-      <div class="salt-highlight">
-        <div class="salt-highlight-icon">&#128274;</div>
-        <div class="salt-highlight-body">
-          <h3>Lock Files</h3>
-          <p>Pin the exact content hash of every installed prompt. A <code>salt.lock</code> file guarantees
-            reproducible builds — the same template, every time, on every machine.</p>
-        </div>
-      </div>
-
-      <div class="salt-highlight">
-        <div class="salt-highlight-icon">&#128737;</div>
-        <div class="salt-highlight-body">
-          <h3>Injection Protection</h3>
-          <p>Hash verification catches tampered templates before they reach your LLM. Any deviation from the locked
-            hash fails fast — keeping malicious prompt injections out of your pipeline.</p>
-        </div>
-      </div>
-
-      <div class="salt-highlight">
-        <div class="salt-highlight-icon">&#9881;</div>
-        <div class="salt-highlight-body">
-          <h3>Built on Margarita</h3>
-          <p>Salt packages are plain <code>.mg</code> and <code>.mgx</code> files — fully compatible with Margarita
-            and Lime from day one. No new format to learn.</p>
-        </div>
-      </div>
-
-      <div class="salt-highlight">
-        <div class="salt-highlight-icon">&#128279;</div>
-        <div class="salt-highlight-body">
-          <h3>Link Hashing</h3>
-          <p>Any link inside a <code>&lt;&lt; &gt;&gt;</code> block is safely fetched at package time and hashed.
-            If the page changes during execution, Salt notifies you — so tampered external context never silently poisons your
-            context.</p>
-        </div>
-      </div>
-
-    </div>
   </div>
 </section>
 

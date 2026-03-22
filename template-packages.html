@@ -1,0 +1,620 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Share Templates Across Projects – Margarita + Lime</title>
+  <meta name="description"
+        content="Package your Margarita templates as a Python library, install them with uv, and render them directly inside Claude with the Margarita skill.">
+
+  <meta property="og:title" content="Share Templates Across Projects – Margarita + Lime">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="icon.png">
+  <meta property="og:description"
+        content="Package .mg files as a Python library, install with uv, and render from Claude using the Margarita skill — no copy-paste, no stale copies.">
+
+  <link rel="icon" href="/img/favicon.ico" sizes="any">
+  <link rel="icon" href="/img/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="img/icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#16A34A">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="site-nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="Margarita + Lime home">
+      <img src="img/lime.svg" alt="Margarita + Lime" class="nav-logo-img">
+      <span class="nav-logo-text">Margarita + Lime</span>
+    </a>
+
+    <button class="nav-hamburger" id="menu-toggle" aria-label="Toggle navigation" aria-expanded="false"
+            aria-controls="nav-links">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="index.html#features">Margarita</a></li>
+      <li><a href="index.html#lime">Lime</a></li>
+      <li><a href="index.html#docs">Docs</a></li>
+      <li class="nav-dropdown">
+        <button class="nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+          Guides <span class="nav-dropdown-arrow" aria-hidden="true">&#9662;</span>
+        </button>
+        <ul class="nav-dropdown-menu" role="list">
+          <li><a href="agents-md.html">One AGENTS.md, for Any Model</a></li>
+          <li><a href="components.html">Compose Once, Reuse Everywhere</a></li>
+          <li><a href="custom-ralph.html">Build a Custom Ralph Wiggum Loop</a></li>
+          <li><a href="local-functions.html">Spend Less on Tokens</a></li>
+          <li><a href="github-issue-summary.html">Auto-Triage GitHub Issues</a></li>
+          <li><a href="template-packages.html">Share Templates Across Projects</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="https://github.com/banyango/margarita" class="nav-cta" target="_blank" rel="noopener noreferrer">
+          GitHub
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-lime-bg hero-lime-bg-1" aria-hidden="true"><img src="img/lime.svg" alt="" class="hero-lime-img"></div>
+  <div class="hero-lime-bg hero-lime-bg-2" aria-hidden="true"><img src="img/lime.svg" alt="" class="hero-lime-img"></div>
+  <div class="hero-lime-bg hero-lime-bg-3" aria-hidden="true"><img src="img/lime.svg" alt="" class="hero-lime-img"></div>
+  <div class="container">
+    <p class="hero-eyebrow">Guide</p>
+    <h1 class="hero-heading">
+      Share Templates<br><span class="hero-accent">Across Projects</span>
+    </h1>
+    <p class="hero-sub">
+      Package your
+      <code style="font-size:1rem;background:rgba(255,255,255,0.15);padding:2px 6px;border-radius:4px;">.mg</code>
+      files as a Python library, install them anywhere with
+      <code style="font-size:1rem;background:rgba(255,255,255,0.15);padding:2px 6px;border-radius:4px;">uv</code>,
+      and render them directly inside Claude with the Margarita skill — no copy-paste, no stale copies.
+    </p>
+    <div class="tut-model-chips">
+      <span class="tut-chip tut-chip--gemini">Template Package</span>
+      <span class="tut-chip tut-chip--plus">+</span>
+      <span class="tut-chip tut-chip--gemini">uv</span>
+      <span class="tut-chip tut-chip--plus">+</span>
+      <span class="tut-chip tut-chip--claude">Claude Skill</span>
+    </div>
+  </div>
+</section>
+
+<!-- The Problem -->
+<section class="tut-section tut-section--light">
+  <div class="container">
+    <div class="tut-intro">
+      <div class="lime-badge">The Problem</div>
+      <h2 class="section-heading">Templates trapped in one project</h2>
+      <p class="section-sub">
+        You've written great prompt components for one project. The next project needs the same ones. So you copy them.
+        Then they drift. Then you have three subtly different versions of the same tone file — and no idea which is
+        current.
+      </p>
+    </div>
+    <div class="tut-pain-cards">
+      <div class="tut-pain-card">
+        <div class="tut-pain-icon">&#128260;</div>
+        <h3>Copy-paste drift</h3>
+        <p>Templates duplicated across repos diverge silently. A fix applied in one project never reaches the others
+          — until a subtle inconsistency surfaces in production output.</p>
+      </div>
+      <div class="tut-pain-card">
+        <div class="tut-pain-icon">&#128196;</div>
+        <h3>No versioning</h3>
+        <p>A copied file has no version. You can't pin a project to <code>v1.2</code> of your tone template or
+          upgrade it deliberately — you just have whatever was current the day you copied it.</p>
+      </div>
+      <div class="tut-pain-card">
+        <div class="tut-pain-icon">&#128683;</div>
+        <h3>Can't use them in Claude</h3>
+        <p>Even if your templates are well-organised locally, there's no easy way to ask Claude to render one. You
+          paste the content manually or describe what you want from memory.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Solution banner -->
+<section class="tut-section tut-section--dark">
+  <div class="container tut-solution-banner">
+    <div class="lime-badge">The Solution</div>
+    <h2 class="section-heading tut-dark-heading">Package once, use everywhere</h2>
+    <p class="section-sub tut-dark-sub">
+      Publish your <code class="tut-inline-code">.mg</code> files as a normal Python package. Any project
+      installs them with <code class="tut-inline-code">uv add</code>. Margarita finds them automatically — no
+      config needed. Install the Claude skill once, and you can render any of them right from a chat message.
+    </p>
+  </div>
+</section>
+
+<!-- Step 1: Create the package -->
+<section class="tut-section tut-section--surface" id="step-1">
+  <div class="container">
+    <div class="tut-step">
+      <div class="tut-step-label">
+        <span class="tut-step-number">1</span>
+        <div>
+          <div class="tut-step-title">Create a template package</div>
+          <div class="tut-step-desc">
+            A template package is a normal Python package — the only convention is that
+            <code>.mg</code> files live under a <code>templates/</code> subdirectory. Add a
+            <code>pyproject.toml</code> with a <code>package-data</code> entry so the
+            <code>.mg</code> files are included when the package is built and installed.
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-explorer tut-explorer">
+        <div class="feature-tab-list" role="tablist" aria-label="Package structure examples">
+
+          <button class="feature-tab is-active" role="tab" aria-selected="true"
+                  aria-controls="panel-layout" data-panel="layout">
+            <span class="ftab-icon">&#128193;</span>
+            <span class="ftab-text">
+              <span class="ftab-name">Directory layout</span>
+              <span class="ftab-desc">How to organise the files</span>
+            </span>
+          </button>
+
+          <button class="feature-tab" role="tab" aria-selected="false"
+                  aria-controls="panel-pyproject" data-panel="pyproject">
+            <span class="ftab-icon">&#128221;</span>
+            <span class="ftab-text">
+              <span class="ftab-name">pyproject.toml</span>
+              <span class="ftab-desc">Package metadata</span>
+            </span>
+          </button>
+
+          <button class="feature-tab" role="tab" aria-selected="false"
+                  aria-controls="panel-tone-template" data-panel="tone-template">
+            <span class="ftab-icon">&#128172;</span>
+            <span class="ftab-text">
+              <span class="ftab-name">tone.mg</span>
+              <span class="ftab-desc">An example template</span>
+            </span>
+          </button>
+
+          <button class="feature-tab" role="tab" aria-selected="false"
+                  aria-controls="panel-draft-template" data-panel="draft-template">
+            <span class="ftab-icon">&#9997;</span>
+            <span class="ftab-text">
+              <span class="ftab-name">draft.mg</span>
+              <span class="ftab-desc">Another example template</span>
+            </span>
+          </button>
+
+        </div>
+
+        <div class="feature-panels">
+
+          <div class="feature-panel is-active" id="panel-layout" role="tabpanel">
+            <div class="fpanel-header">
+              <h3>Directory layout</h3>
+              <p>The package name on disk is <code>my-writing-templates</code>. The importable Python module is
+                <code>my_writing_templates</code> (hyphens become underscores). Templates live under
+                <code>my_writing_templates/templates/</code>.</p>
+            </div>
+            <pre class="fpanel-code"><code>my-writing-templates/
+  pyproject.toml
+  my_writing_templates/
+    __init__.py
+    templates/
+      tone.mg
+      draft.mg
+      techniques/
+        show_dont_tell.mg</code></pre>
+          </div>
+
+          <div class="feature-panel" id="panel-pyproject" role="tabpanel">
+            <div class="fpanel-header">
+              <h3>pyproject.toml</h3>
+              <p>The <code>package-data</code> entry is what makes Margarita work — it ensures
+                <code>.mg</code> files are bundled into the installed package, not just the
+                <code>.py</code> source.</p>
+            </div>
+            <pre class="fpanel-code"><code><span class="code-meta">[project]</span>
+name = <span class="code-string">"my-writing-templates"</span>
+version = <span class="code-string">"0.1.0"</span>
+
+<span class="code-meta">[tool.setuptools.package-data]</span>
+<span class="code-string">"my_writing_templates"</span> = [
+  <span class="code-string">"templates/*.mg"</span>,
+  <span class="code-string">"templates/**/*.mg"</span>,
+]</code></pre>
+          </div>
+
+          <div class="feature-panel" id="panel-tone-template" role="tabpanel">
+            <div class="fpanel-header">
+              <h3>my_writing_templates/templates/tone.mg</h3>
+              <p>A reusable tone component. Pass <code>style</code> at include time and the right
+                block is selected — one file covers every variation.</p>
+            </div>
+            <pre class="fpanel-code"><code><span class="code-comment"># my_writing_templates/templates/tone.mg</span>
+<span class="code-meta">---
+name: tone
+description: Sets the writing tone for any document.
+parameter: style (string) - One of: "professional", "friendly", "concise".
+---</span>
+
+<span class="code-keyword">if</span> style == <span class="code-string">"professional"</span>:
+  &lt;&lt; Write in a professional, polished tone. Be direct and precise.
+  Avoid casual phrasing or filler words. &gt;&gt;
+
+<span class="code-keyword">elif</span> style == <span class="code-string">"friendly"</span>:
+  &lt;&lt; Write in a warm, approachable tone. Use plain language and
+  make the reader feel at ease. &gt;&gt;
+
+<span class="code-keyword">elif</span> style == <span class="code-string">"concise"</span>:
+  &lt;&lt; Be extremely concise. Lead with the answer. No preamble,
+  no filler. One sentence where possible. &gt;&gt;</code></pre>
+          </div>
+
+          <div class="feature-panel" id="panel-draft-template" role="tabpanel">
+            <div class="fpanel-header">
+              <h3>my_writing_templates/templates/draft.mg</h3>
+              <p>Pulls in <code>tone.mg</code> from the same package and adds a structured drafting
+                prompt. The include path uses the package name as the namespace.</p>
+            </div>
+            <pre class="fpanel-code"><code><span class="code-comment"># my_writing_templates/templates/draft.mg</span>
+<span class="code-meta">---
+name: draft
+description: Drafts a piece of writing with a given topic and tone.
+parameter: topic (string) - What to write about.
+parameter: style (string) - Tone: "professional", "friendly", or "concise".
+parameter: length (string) - Target length, e.g. "one paragraph", "500 words".
+---</span>
+
+<span class="code-var">[[ my-writing-templates/tone
+    style="${style}" ]]</span>
+
+&lt;&lt;
+## Draft
+
+Write <span class="code-var">${length}</span> about the following topic:
+
+<span class="code-var">${topic}</span>
+&gt;&gt;
+
+<span class="code-keyword">@effect run</span></code></pre>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Step 2: Install with uv -->
+<section class="tut-section tut-section--light" id="step-2">
+  <div class="container">
+    <div class="tut-step">
+      <div class="tut-step-label">
+        <span class="tut-step-number">2</span>
+        <div>
+          <div class="tut-step-title">Install the package with uv</div>
+          <div class="tut-step-desc">
+            From any project that needs the templates, run <code>uv add</code>. Margarita
+            scans the project's <code>.venv/</code> at render time and automatically discovers
+            any installed packages that expose a <code>templates/</code> directory — no extra
+            configuration needed.
+          </div>
+        </div>
+      </div>
+
+      <div class="tut-render-grid">
+
+        <div class="tut-render-card tut-render-card--claude">
+          <div class="tut-render-card-header">
+            <span class="tut-model-badge tut-model-badge--claude">From PyPI</span>
+            <span class="tut-render-target">published package</span>
+          </div>
+          <pre class="fpanel-code"><code><span class="code-comment"># Install from PyPI once the package is published</span>
+uv add my-writing-templates
+
+<span class="code-comment"># Pin to a specific version for reproducibility</span>
+uv add <span class="code-string">"my-writing-templates==0.1.0"</span>
+
+<span class="code-comment"># Margarita now resolves this include automatically:</span>
+<span class="code-var">[[ my-writing-templates/tone
+    style="professional" ]]</span></code></pre>
+        </div>
+
+        <div class="tut-render-card tut-render-card--gemini">
+          <div class="tut-render-card-header">
+            <span class="tut-model-badge tut-model-badge--gemini">Local dev</span>
+            <span class="tut-render-target">editable install</span>
+          </div>
+          <pre class="fpanel-code"><code><span class="code-comment"># During development, install from a local path</span>
+uv add --editable ../my-writing-templates
+
+<span class="code-comment"># Changes to .mg files are picked up immediately —
+# no reinstall needed.</span>
+
+<span class="code-comment"># The include works the same way:</span>
+<span class="code-var">[[ my-writing-templates/tone
+    style="friendly" ]]</span></code></pre>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Step 3: Install the Claude skill -->
+<section class="tut-section tut-section--surface" id="step-3">
+  <div class="container">
+    <div class="tut-step">
+      <div class="tut-step-label">
+        <span class="tut-step-number">3</span>
+        <div>
+          <div class="tut-step-title">Install the Margarita Claude skill</div>
+          <div class="tut-step-desc">
+            The Margarita skill lets Claude render any <code>.mg</code> template — including ones from
+            installed packages — without leaving the conversation. Run the install command once per
+            project, then restart Claude. The skill is registered in your local <code>.claude/</code>
+            directory and is picked up automatically.
+          </div>
+        </div>
+      </div>
+
+      <div class="tut-render-grid">
+
+        <div class="tut-render-card tut-render-card--claude">
+          <div class="tut-render-card-header">
+            <span class="tut-model-badge tut-model-badge--claude">Install</span>
+            <span class="tut-render-target">one-time setup</span>
+          </div>
+          <pre class="fpanel-code"><code><span class="code-comment"># Run from your project directory</span>
+uvx margarita install-claude-skill
+
+<span class="code-comment"># Output:</span>
+<span class="code-keyword">✓</span> Skill installed at .claude/skills/margarita.md
+<span class="code-keyword">✓</span> Ready — restart Claude Code to activate</code></pre>
+        </div>
+
+        <div class="tut-render-card tut-render-card--gemini">
+          <div class="tut-render-card-header">
+            <span class="tut-model-badge tut-model-badge--gemini">What it enables</span>
+            <span class="tut-render-target">in Claude</span>
+          </div>
+          <pre class="fpanel-code"><code><span class="code-comment"># Render a local template</span>
+Can you render <span class="code-string">"templates/greeting.mg"</span>
+  with <span class="code-var">{"name": "Alice"}</span>?
+
+<span class="code-comment"># Render a template from an installed package</span>
+Can you render <span class="code-string">"my-writing-templates/tone"</span>
+  with <span class="code-var">{"style": "professional"}</span>?
+
+<span class="code-comment"># Ask Claude to create a new template</span>
+Create a margarita template for a
+product description with name, features,
+and a call to action.</code></pre>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Step 4: Use it -->
+<section class="tut-section tut-section--light" id="step-4">
+  <div class="container">
+    <div class="tut-step">
+      <div class="tut-step-label">
+        <span class="tut-step-number">4</span>
+        <div>
+          <div class="tut-step-title">Render package templates from Claude</div>
+          <div class="tut-step-desc">
+            With the skill active and the package installed, Claude can render any of its templates
+            directly. Pass variables in the chat and Claude handles the render — resolving includes,
+            substituting variables, evaluating <code>if</code> blocks — and returns the final prompt
+            or output.
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-explorer tut-explorer">
+        <div class="feature-tab-list" role="tablist" aria-label="Claude skill interaction examples">
+
+          <button class="feature-tab is-active" role="tab" aria-selected="true"
+                  aria-controls="panel-render-tone" data-panel="render-tone">
+            <span class="ftab-icon">&#128172;</span>
+            <span class="ftab-text">
+              <span class="ftab-name">Render tone.mg</span>
+              <span class="ftab-desc">A package template</span>
+            </span>
+          </button>
+
+          <button class="feature-tab" role="tab" aria-selected="false"
+                  aria-controls="panel-render-draft" data-panel="render-draft">
+            <span class="ftab-icon">&#9997;</span>
+            <span class="ftab-text">
+              <span class="ftab-name">Render draft.mg</span>
+              <span class="ftab-desc">With nested includes</span>
+            </span>
+          </button>
+
+          <button class="feature-tab" role="tab" aria-selected="false"
+                  aria-controls="panel-create" data-panel="create">
+            <span class="ftab-icon">&#10024;</span>
+            <span class="ftab-text">
+              <span class="ftab-name">Create a new template</span>
+              <span class="ftab-desc">Claude writes it for you</span>
+            </span>
+          </button>
+
+        </div>
+
+        <div class="feature-panels">
+
+          <div class="feature-panel is-active" id="panel-render-tone" role="tabpanel">
+            <div class="fpanel-header">
+              <h3>Rendering a package template</h3>
+              <p>Claude resolves the package include, selects the right <code>if</code> block for
+                <code>style="concise"</code>, and returns the rendered text — all without leaving
+                the chat.</p>
+            </div>
+            <pre class="fpanel-code"><code><span class="code-comment">// You type in Claude:</span>
+Can you render <span class="code-string">"my-writing-templates/tone"</span>
+  with <span class="code-var">{"style": "concise"}</span>?
+
+<span class="code-comment">// Claude responds:</span>
+<span class="code-keyword">Rendered output of my-writing-templates/tone</span>
+<span class="code-comment">─────────────────────────────────────────────</span>
+Be extremely concise. Lead with the answer.
+No preamble, no filler.
+One sentence where possible.              <span class="tut-highlight-line">&#x25C4; "concise" block selected</span></code></pre>
+          </div>
+
+          <div class="feature-panel" id="panel-render-draft" role="tabpanel">
+            <div class="fpanel-header">
+              <h3>Rendering a template with nested includes</h3>
+              <p><code>draft.mg</code> includes <code>tone.mg</code> from the same package.
+                Claude resolves the entire tree and returns the assembled prompt, then runs it.</p>
+            </div>
+            <pre class="fpanel-code"><code><span class="code-comment">// You type in Claude:</span>
+Can you render <span class="code-string">"my-writing-templates/draft"</span> with:
+  <span class="code-var">{
+    "topic": "why shorter prompts get better results",
+    "style": "friendly",
+    "length": "one paragraph"
+  }</span>
+
+<span class="code-comment">// Claude assembles and runs the template:</span>
+<span class="code-keyword">## Assembled prompt</span>
+Write in a warm, approachable tone. Use plain    <span class="tut-highlight-line">&#x25C4; from tone.mg</span>
+language and make the reader feel at ease.
+
+<span class="code-keyword">## Draft</span>
+Write one paragraph about the following topic:
+why shorter prompts get better results
+
+<span class="code-comment">// Then Claude runs the prompt and returns the draft.</span></code></pre>
+          </div>
+
+          <div class="feature-panel" id="panel-create" role="tabpanel">
+            <div class="fpanel-header">
+              <h3>Asking Claude to create a new template</h3>
+              <p>You don't have to author <code>.mg</code> files by hand. Describe what you need
+                and Claude writes a ready-to-save template that follows Margarita conventions.</p>
+            </div>
+            <pre class="fpanel-code"><code><span class="code-comment">// You type in Claude:</span>
+Create a margarita template for a product
+description. I want it to include the product
+name, a list of features, and a call to action.
+
+<span class="code-comment">// Claude responds:</span>
+<span class="code-keyword">// file: product_description.mg</span>
+<span class="code-meta">---
+name: product_description
+description: Drafts a product description with features and CTA.
+parameter: product_name (string) - The product's name.
+parameter: features (list) - Key features to highlight.
+parameter: call_to_action (string) - The desired next step for the reader.
+---</span>
+&lt;&lt;
+<span class="code-keyword"># ${product_name}</span>
+
+<span class="code-var">${product_name}</span> gives you:
+
+<span class="code-keyword">for</span> feature <span class="code-keyword">in</span> features:
+  - <span class="code-var">${feature}</span>
+
+<span class="code-var">${call_to_action}</span>
+&gt;&gt;
+
+<span class="code-keyword">@effect run</span></code></pre>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Key Insights -->
+<section class="tut-section tut-section--surface">
+  <div class="container">
+    <div class="tut-insight-grid">
+      <div class="tut-insight-card">
+        <div class="tut-insight-icon">&#128230;</div>
+        <h3>One package, every project</h3>
+        <p>Templates live in one place and are versioned like any other dependency.
+          Every project that runs <code>uv add my-writing-templates</code> gets the same
+          source of truth — no drift, no stale copies.</p>
+      </div>
+      <div class="tut-insight-card">
+        <div class="tut-insight-icon">&#128279;</div>
+        <h3>No extra config</h3>
+        <p>Margarita discovers installed packages automatically by scanning the project's
+          <code>.venv/</code>. There's nothing to register or configure — install the package
+          and the includes just work.</p>
+      </div>
+      <div class="tut-insight-card">
+        <div class="tut-insight-icon">&#129302;</div>
+        <h3>Claude as your template assistant</h3>
+        <p>The Margarita skill turns Claude into a first-class template environment. Render,
+          compose, and author <code>.mg</code> files in plain conversation — no terminal
+          required for day-to-day use.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="tut-section tut-section--cta">
+  <div class="container tut-cta">
+    <h2 class="section-heading tut-dark-heading">Ready to share your templates?</h2>
+    <p class="section-sub tut-dark-sub">
+      Package your best prompt components once and install them everywhere — then let Claude render them for you.
+    </p>
+    <div class="hero-actions">
+      <a href="https://www.banyango.com/margarita/latest/" class="btn btn-primary" target="_blank"
+         rel="noopener noreferrer">Read the Margarita Docs</a>
+      <a href="index.html" class="btn btn-ghost">Back to Margarita + Lime</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="img/lime.svg" alt="Margarita + Lime" class="footer-logo-img">
+        <span class="footer-brand-name">Margarita + Lime</span>
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="https://www.banyango.com/margarita/latest/" target="_blank" rel="noopener noreferrer">Margarita Docs</a>
+        <a href="https://www.banyango.com/Lime/latest/" target="_blank" rel="noopener noreferrer">Lime Docs</a>
+        <a href="https://github.com/banyango/margarita" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </nav>
+      <p class="footer-copy">&copy; 2026 Banyango. MIT License. Logo courtesy Freepik</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+</body>
+
+</html>
