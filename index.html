@@ -77,11 +77,16 @@
 
 <!-- Hero -->
 <section class="hero" id="hero">
-  <div class="hero-lime-bg hero-lime-bg-1" aria-hidden="true"><img src="img/lime.svg" alt="" class="hero-lime-img"></div>
-  <div class="hero-lime-bg hero-lime-bg-2" aria-hidden="true"><img src="img/lime.svg" alt="" class="hero-lime-img"></div>
-  <div class="hero-lime-bg hero-lime-bg-3" aria-hidden="true"><img src="img/lime.svg" alt="" class="hero-lime-img"></div>
-  <div class="hero-lime-bg hero-lime-bg-4" aria-hidden="true"><img src="img/lime.svg" alt="" class="hero-lime-img"></div>
-  <div class="hero-lime-bg hero-lime-bg-5" aria-hidden="true"><img src="img/lime.svg" alt="" class="hero-lime-img"></div>
+  <div class="hero-lime-bg hero-lime-bg-1" aria-hidden="true"><img src="img/lime.svg" alt="" class="hero-lime-img">
+  </div>
+  <div class="hero-lime-bg hero-lime-bg-2" aria-hidden="true"><img src="img/lime.svg" alt="" class="hero-lime-img">
+  </div>
+  <div class="hero-lime-bg hero-lime-bg-3" aria-hidden="true"><img src="img/lime.svg" alt="" class="hero-lime-img">
+  </div>
+  <div class="hero-lime-bg hero-lime-bg-4" aria-hidden="true"><img src="img/lime.svg" alt="" class="hero-lime-img">
+  </div>
+  <div class="hero-lime-bg hero-lime-bg-5" aria-hidden="true"><img src="img/lime.svg" alt="" class="hero-lime-img">
+  </div>
   <div class="container">
     <h1 class="hero-heading">
       Margarita <span class="hero-accent">+</span> Lime
@@ -103,7 +108,8 @@
     <div class="margarita-intro">
       <div class="lime-badge">Ecosystem</div>
       <h2 class="section-heading">Margarita</h2>
-      <p class="section-sub">Margarita templates bring structure and reusability to your prompts - renders to plain old markdown so you can use it anywhere you were already using markdown.</p>
+      <p class="section-sub">Margarita templates bring structure and reusability to your prompts - renders to plain old
+        markdown so you can use it anywhere you were already using markdown.</p>
       <div class="hero-actions">
         <a href="components.html" class="btn btn-lime">Guide: Compose Once, Reuse Everywhere &rarr;</a>
         <a href="agents-md.html" class="btn btn-lime">Guide: One AGENTS.md, for Any Model &rarr;</a>
@@ -114,7 +120,8 @@
            rel="noopener noreferrer">Explore Margarita Docs</a>
       </div>
     </div>
-    <div id="margarita-demo-player" style="border-radius:8px;overflow:hidden;max-width:900px;margin:0 auto 2.5rem;"></div>
+    <div id="margarita-demo-player"
+         style="border-radius:8px;overflow:hidden;max-width:900px;margin:0 auto 2.5rem;"></div>
 
     <div class="feature-explorer">
 
@@ -164,11 +171,11 @@
             </span>
         </button>
 
-        <button class="feature-tab" role="tab" aria-selected="false" aria-controls="panel-cli" data-panel="cli">
-          <span class="ftab-icon">$</span>
+        <button class="feature-tab" role="tab" aria-selected="false" aria-controls="panel-uv" data-panel="uv">
+          <span class="ftab-icon">&#9889;</span>
           <span class="ftab-text">
-              <span class="ftab-name">CLI</span>
-              <span class="ftab-desc">Render from the terminal</span>
+              <span class="ftab-name">uv</span>
+              <span class="ftab-desc">Fast Python packaging</span>
             </span>
         </button>
 
@@ -177,14 +184,6 @@
           <span class="ftab-text">
               <span class="ftab-name">Python API</span>
               <span class="ftab-desc">Programmatic access</span>
-            </span>
-        </button>
-
-        <button class="feature-tab" role="tab" aria-selected="false" aria-controls="panel-uv" data-panel="uv">
-          <span class="ftab-icon">&#9889;</span>
-          <span class="ftab-text">
-              <span class="ftab-name">uv</span>
-              <span class="ftab-desc">Fast Python packaging</span>
             </span>
         </button>
 
@@ -214,7 +213,7 @@ Anything you can do in markdown you can do here.
         <div class="feature-panel" id="panel-variables" role="tabpanel">
           <div class="fpanel-header">
             <h3>Variable Substitution</h3>
-            <p>Pass data in through json context on the CLI or directly via includes and use
+            <p>Pass data into your templates using
               <code>${variable}</code> anywhere in the body.</p>
           </div>
           <pre class="fpanel-code"><code><span class="code-comment"># greet.mg</span>
@@ -249,8 +248,7 @@ parameter: level (string): Access level of the user, e.g. "admin" or "user".
         <div class="feature-panel" id="panel-loops" role="tabpanel">
           <div class="fpanel-header">
             <h3>Loops</h3>
-            <p>Iterate over a list in the context with <code>for item in list:</code>. Each iteration renders the
-              indented block — ideal for enumerating examples or steps.</p>
+            <p>Loop over data just like in your programming languages.</p>
           </div>
           <pre class="fpanel-code"><code><span class="code-comment"># tasks.mg</span>
 <span class="code-meta">---
@@ -264,7 +262,7 @@ description: A template that demonstrates looping over a list of tasks.
         <div class="feature-panel" id="panel-includes" role="tabpanel">
           <div class="fpanel-header">
             <h3>Includes</h3>
-            <p>Define reusable fragments in their own files and pull them into any template.</p>
+            <p>React like composability with includes.</p>
           </div>
           <pre class="fpanel-code"><code><span class="code-comment"># components/greeting.mg</span>
 <span class="code-meta">---
@@ -279,23 +277,6 @@ description: A report template that includes a greeting component.
 ---</span>
 <span class="code-var">[[ components/greeting.mg user="Batman" ]]</span>
             </code></pre>
-        </div>
-
-        <div class="feature-panel" id="panel-cli" role="tabpanel">
-          <div class="fpanel-header">
-            <h3>CLI Tools</h3>
-            <p>Render templates or extract metadata straight from the terminal. Supply context via a JSON file or let
-              the template use its built-in defaults.</p>
-          </div>
-          <pre class="fpanel-code"><code><span class="code-comment"># render to stdout</span>
-margarita render greet.mg
-
-<span class="code-comment"># supply an external context file</span>
-margarita render greet.mg \
-  --context ctx.json
-
-<span class="code-comment"># extract template metadata</span>
-margarita metadata report.mg</code></pre>
         </div>
 
         <div class="feature-panel" id="panel-python" role="tabpanel">
@@ -321,7 +302,8 @@ prompt = renderer.render(nodes)</code>
         <div class="feature-panel" id="panel-uv" role="tabpanel">
           <div class="fpanel-header">
             <h3>Using Margarita with uv</h3>
-            <p>Install and run Margarita with <a href="https://docs.astral.sh/uv/" target="_blank" rel="noopener noreferrer">uv</a> — no virtual environment setup required. Use <code>uvx</code> to run it as a one-off tool, or add it as a project dependency. Packages that ship <code>.mg</code> files can be installed via uv and included directly in your templates.</p>
+            <p> Use <code>uvx</code> to run it as a one-off tool, or add it as a project dependency. Packages
+              that ship <code>.mg</code> files can be used in includes.</p>
           </div>
           <pre class="fpanel-code"><code><span class="code-comment"># run margarita directly without installing</span>
 uvx margarita render greet.mg
@@ -353,8 +335,10 @@ uv tool install margarita
       <div class="lime-badge">Ecosystem</div>
       <h2 class="section-heading">Meet <span class="lime-accent">Lime</span></h2>
       <p class="section-sub">
-        Lime is an extension that <span class="lime-accent">wraps</span> your existing AI tools like <span class="lime-accent">Github Copilot</span> / <span class="lime-accent">More soon</span>.
-        Create <code class="code-comment">.mgx</code> files and get surgical control over the context, tools, and state sent to them.
+        Lime is an extension that <span class="lime-accent">wraps</span> your existing AI tools like <span
+        class="lime-accent">Github Copilot</span> / <span class="lime-accent">More soon</span>.
+        Create <code class="code-comment">.mgx</code> files and get surgical control over the context, tools, and state
+        sent to them.
       </p>
       <div class="hero-actions">
         <a href="custom-ralph.html" class="btn btn-ghost">Guide: Build a Custom Ralph Wiggum Loop &rarr;</a>
@@ -362,7 +346,8 @@ uv tool install margarita
         <a href="local-functions.html" class="btn btn-ghost">Guide: Spend less $ on Tokens &rarr;</a>
       </div>
       <div class="hero-explore">
-        <a href="https://www.banyango.com/Lime/latest/" class="btn btn-lime" target="_blank" rel="noopener noreferrer">Explore Lime Docs</a>
+        <a href="https://www.banyango.com/Lime/latest/" class="btn btn-lime" target="_blank" rel="noopener noreferrer">Explore
+          Lime Docs</a>
       </div>
     </div>
 
@@ -450,7 +435,8 @@ uv tool install margarita
         <div class="feature-panel is-active" id="panel-lime-helloworld" role="tabpanel">
           <div class="fpanel-header">
             <h3>Hello World</h3>
-            <p>Your first <code>.mgx</code> file. Log a message, declare a state variable, write a prompt block, and run the agent — that's all it takes to get started with Lime.</p>
+            <p>Your first <code>.mgx</code> file. Log a message, declare a state variable, write a prompt block, and run
+              the agent — that's all it takes to get started with Lime.</p>
           </div>
           <pre class="fpanel-code"><code><span class="code-meta">---
 description: Hello World!
@@ -472,7 +458,8 @@ description: Hello World!
         <div class="feature-panel" id="panel-lime-run" role="tabpanel">
           <div class="fpanel-header">
             <h3>Running the Agent</h3>
-            <p>Use <code>@effect run</code> to execute the agent at any point in your <code>.mgx</code> file. Run it multiple times. Margarita
+            <p>Use <code>@effect run</code> to execute the agent at any point in your <code>.mgx</code> file. Run it
+              multiple times. Margarita
               renders all accumulated
               <code>&lt;&lt; &gt;&gt;</code> blocks into the prompt before the agent is called.</p>
           </div>
@@ -493,8 +480,9 @@ description: A simple Lime agent that answers a question.
 
 <span class="code-comment">// 4. Run the agent again!</span>
 <span class="code-keyword">@effect run</span></code>
-</pre></div>
-<div class="feature-panel" id="panel-lime-func" role="tabpanel">
+</pre>
+        </div>
+        <div class="feature-panel" id="panel-lime-func" role="tabpanel">
           <div class="fpanel-header">
             <h3>Local Functions</h3>
             <p>Use <code>@effect func</code> to run a local Python function and store the return value in state — no LLM
@@ -519,7 +507,8 @@ description: Call a Python function and store the result into state vars.
         <div class="feature-panel" id="panel-lime-tools" role="tabpanel">
           <div class="fpanel-header">
             <h3>Dynamic Tools</h3>
-            <p>Use <code>@effect tools</code> to add a tool function to your <code>agent</code>. Register only the tools you need. Use <code>@effect tools clear</code> to drop all tools.</p>
+            <p>Use <code>@effect tools</code> to add a tool function to your <code>agent</code>. Register only the tools
+              you need. Use <code>@effect tools clear</code> to drop all tools.</p>
           </div>
           <pre class="fpanel-code"><code><span class="code-comment"># analyst.mgx</span>
 <span class="code-meta">---
@@ -599,7 +588,8 @@ Update the count variable to 10 and print out the user variable.
 description: Prompt the user, then run the agent with their input.
 ---</span>
 <span class="code-comment">// Pause and ask the user a question</span>
-<span class="code-keyword">@effect input</span> <span class="code-var">"What do you want to build?:"</span> <span class="code-keyword">=&gt;</span> userInput
+<span class="code-keyword">@effect input</span> <span class="code-var">"What do you want to build?:"</span> <span
+              class="code-keyword">=&gt;</span> userInput
 
 <span class="code-comment">// Use the captured input in context</span>
 &lt;&lt; You are a helpful build assistant. &gt;&gt;
@@ -612,7 +602,8 @@ description: Prompt the user, then run the agent with their input.
           <div class="fpanel-header">
             <h3>Memory</h3>
             <p>Use <code>@memory var</code> to declare a persistent variable that survives across runs. Values are
-              read on startup and written back at the end — letting you build workflows that remember what happened last time.</p>
+              read on startup and written back at the end — letting you build workflows that remember what happened last
+              time.</p>
           </div>
           <pre class="fpanel-code"><code><span class="code-comment"># memory-example.mgx</span>
 <span class="code-meta">---
@@ -685,6 +676,7 @@ Otherwise write out it's set!
           Docs</a>
         <a href="https://www.banyango.com/Lime/latest/" target="_blank" rel="noopener noreferrer">Lime Docs</a>
         <a href="https://github.com/banyango/margarita" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="mailto:kyle@banyango.com">Investors</a>
       </nav>
       <p class="footer-copy">&copy; 2026 Banyango. MIT License. Logo courtesy Freepik</p>
     </div>
